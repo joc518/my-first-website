@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>我的学习日记</title>
+        <style>
+            h1{
+                color: blue;
+                font-size: 50px;
+            }
+            h2{
+                color: #333;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>我的第一天学开发</h1>
+        <h2>今天学到了什么</h2>
+        <p>第一个跟<strong>终端</strong>对话，搞明白了zsh是个翻译官。</p>
+        <p>写出了第一个网页，用html标签把文字“包起来”给浏览器看。</p>
+        <h2>今天学的命令</h2>
+        <ul>
+            <li>pwd - 看我在哪</li>
+            <li>cd - 走到指定的哪个文件夹</li>
+            <li>ls - 看当前文件夹有啥</li>
+            <li>mkdir - 造文件夹</li>
+            <li>touch - 造文件</li>
+        </ul>
+
+        <h2>今天踩的坑</h2>
+        <ol>
+            <li>把ls 打成1s</li>
+            <li>cd- 没空格</li>
+            <li>用 mkdir 当touch用</li>
+        </ol>
+    <button onclick="loadCat()">来只猫</button> 
+<button onclick="loadPost()">来一篇文章</button>
+<div id="cat-area"></div>
+<div id="post-area"></div>
+
+<script>
+  function loadCat() {
+    fetch('https://api.thecatapi.com/v1/images/search')
+      .then(response => response.json())
+      .then(data => {
+        const catUrl = data[0].url;
+        document.getElementById('cat-area').innerHTML = 
+          '<img src="' + catUrl + '" width="400">';
+      });
+  }
+
+  function loadPost() {
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('post-area').innerHTML = 
+          '<h3>' + data.title + '</h3>' +
+          '<p>' + data.body + '</p>';
+      });
+  }
+</script>
+    </body>
+</html>
